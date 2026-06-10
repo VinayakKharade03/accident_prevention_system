@@ -1,233 +1,302 @@
-# Accident Detection System
+# 🚗 Accident Detection System
 
 An AI-powered road safety system that uses Computer Vision, GPS tracking, and real-time monitoring to detect road hazards, estimate collision risk, and provide live alerts.
 
 ---
 
-# Overview
+## 📖 Overview
 
 The Accident Detection System continuously monitors road environments using a mobile camera and AI-based object detection.
 
-It uses:
-- DroidCam for live video streaming from Android
-- YOLOv8 for object detection
-- OpenCV for image processing and tracking
-- FastAPI for backend APIs
-- Flutter for mobile application
-- GPS for real-time location tracking
+### Technologies Used
+
+* 📱 DroidCam for live video streaming from Android devices
+* 🤖 YOLOv8 for object detection
+* 🎥 OpenCV for image processing and object tracking
+* ⚡ FastAPI for backend APIs
+* 📲 Flutter for the mobile application
+* 📍 GPS for real-time location tracking
 
 The system detects vehicles, pedestrians, and animals, estimates distance, classifies risk levels, and provides real-time alerts.
 
 ---
 
-# Key Features
+## ✨ Key Features
 
-## Real-Time Object Detection
-- Detects vehicles, pedestrians, and animals
-- Processes live video stream
-- Uses YOLOv8 for detection
-- Tracks objects across frames
+### 🚘 Real-Time Object Detection
 
-## Collision Risk Assessment
-- Estimates distance from camera
-- Risk levels:
-  - Safe
-  - Warning
-  - Danger
+* Detects vehicles, pedestrians, and animals
+* Processes live video streams
+* Uses YOLOv8 for high-speed detection
+* Tracks objects across frames
 
-## GPS Tracking
-- Real-time location tracking
-- Sends coordinates to backend
-- Supports navigation awareness
+### ⚠️ Collision Risk Assessment
 
-## Live Dashboard
-- Shows detected objects
-- Displays collision status
-- Shows GPS data
-- Real-time updates
+* Estimates object distance from the camera
+* Classifies risk levels:
 
-## Mobile App (Flutter)
-- Live monitoring interface
-- Alerts and notifications
-- Simple UI for users
+  * Safe
+  * Warning
+  * Danger
 
----
+### 📍 GPS Tracking
 
-# Technology Stack
+* Real-time location tracking
+* Sends coordinates to the backend
+* Supports location-aware monitoring
 
-Frontend:
-- Flutter
-- Dart
+### 📊 Live Dashboard
 
-Backend:
-- FastAPI
-- Python
+* Displays detected objects
+* Shows collision status
+* Displays GPS data
+* Real-time updates
 
-AI / Computer Vision:
-- YOLOv8
-- OpenCV
+### 📱 Mobile App (Flutter)
 
-Communication:
-- REST APIs
-- JSON
+* Live monitoring interface
+* Alerts and notifications
+* Simple and user-friendly UI
 
 ---
 
-# System Architecture
+## 🛠 Technology Stack
 
+### Frontend
+
+* Flutter
+* Dart
+
+### Backend
+
+* FastAPI
+* Python
+
+### AI / Computer Vision
+
+* YOLOv8
+* OpenCV
+
+### Communication
+
+* REST APIs
+* JSON
+
+---
+
+## 🏗 System Architecture
+
+```text
 Mobile Camera + GPS
-        ↓
-     DroidCam
-        ↓
-   Video Stream
-        ↓
+         │
+         ▼
+      DroidCam
+         │
+         ▼
+    Video Stream
+         │
+         ▼
    FastAPI Backend
-        ↓
- -------------------------
- |         |            |
-YOLO    Distance       GPS
-Detection Analysis   Tracking
- -------------------------
-        ↓
-   Risk Assessment
-        ↓
-   Flutter App
+         │
+ ┌───────┼────────┐
+ ▼       ▼        ▼
+YOLO  Distance   GPS
+Detect Analysis Tracking
+         │
+         ▼
+  Risk Assessment
+         │
+         ▼
+    Flutter App
+```
 
 ---
 
-# Project Structure
+## 📂 Project Structure
 
+```text
 Accident_Prevention_System/
 │
 ├── Frontend/
+│
 ├── Backend/
 │   ├── app/
 │   ├── models/
 │   ├── requirements.txt
 │   └── main.py
+│
 └── README.md
+```
 
 ---
 
-# Setup Instructions
+## 🚀 Setup Instructions
 
-## Backend
+### Backend Setup
 
-cd Backend  
-python -m venv venv  
+```bash
+cd Backend
 
-Windows:
-venv\Scripts\activate  
+python -m venv venv
+```
 
-Linux/macOS:
-source venv/bin/activate  
+#### Windows
 
-pip install -r requirements.txt  
+```bash
+venv\Scripts\activate
+```
 
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000  
+#### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+#### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Start Server
+
+```bash
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
 Backend runs at:
-http://localhost:8000  
 
-API Docs:
-http://localhost:8000/docs  
+```text
+http://localhost:8000
+```
 
----
+API Documentation:
 
-## Frontend
-
-cd Frontend  
-flutter pub get  
-flutter run  
+```text
+http://localhost:8000/docs
+```
 
 ---
 
-## DroidCam Setup
+### Frontend Setup
 
-Install DroidCam on phone and PC.
+```bash
+cd Frontend
 
-Ensure both devices are on same WiFi network.
-
-Stream URL:
-http://YOUR_PHONE_IP:4747/video  
-
----
-
-## Required Configuration
-
-Backend URL (Frontend):
-http://YOUR_SERVER_IP:8000  
-
-DroidCam Stream:
-http://YOUR_PHONE_IP:4747/video  
-
-Alert Service:
-http://YOUR_SERVER_IP:5000/alert  
+flutter pub get
+flutter run
+```
 
 ---
 
-# Detection Settings
+## 📹 DroidCam Setup
 
-FRAME_W = 640  
-FRAME_H = 480  
-CONFIDENCE = 0.25  
-FOCAL_LENGTH = 700  
-DANGER_DIST = 4  
-WARNING_DIST = 8  
-MAX_TRACK_DIST = 60  
-MAX_LOST = 10  
+1. Install DroidCam on both your phone and PC.
+2. Connect both devices to the same Wi-Fi network.
+3. Start the DroidCam server.
 
----
+Video Stream URL:
 
-# Risk Levels
-
-| Distance | Risk |
-|----------|------|
-| ≤ 4 m    | Danger |
-| ≤ 8 m    | Warning |
-| > 8 m    | Safe |
+```text
+http://YOUR_PHONE_IP:4747/video
+```
 
 ---
 
-# Supabase
+## ⚙️ Required Configuration
 
-- Uses anon key (safe for frontend)
-- Security handled using Row Level Security (RLS)
-- Users can create their own Supabase project if required
+### Backend URL (Frontend)
 
----
+```text
+http://YOUR_SERVER_IP:8000
+```
 
-# Troubleshooting
+### DroidCam Stream URL
 
-## Video Not Working
-- Check DroidCam IP
-- Ensure same WiFi connection
+```text
+http://YOUR_PHONE_IP:4747/video
+```
 
-## Backend Not Working
-- Activate virtual environment
-- Check model path
+### Alert Service
 
-## API Issues
-- Verify backend IP in frontend
-
----
-
-# Future Improvements
-
-- ADAS system
-- Smart speed prediction
-- Cloud dashboard
-- Multi-camera support
-- Emergency alert system
+```text
+http://YOUR_SERVER_IP:5000/alert
+```
 
 ---
 
-# License
+## 🎯 Detection Settings
 
-This project is for educational and research purposes only.
+```python
+FRAME_W = 640
+FRAME_H = 480
+CONFIDENCE = 0.25
+FOCAL_LENGTH = 700
+
+DANGER_DIST = 4
+WARNING_DIST = 8
+
+MAX_TRACK_DIST = 60
+MAX_LOST = 10
+```
 
 ---
 
-# Authors
+## 🚨 Risk Levels
 
-Built using Flutter, FastAPI, YOLOv8, OpenCV, GPS tracking, and real-time collision detection.
+| Distance | Risk Level |
+| -------- | ---------- |
+| ≤ 4 m    | 🔴 Danger  |
+| ≤ 8 m    | 🟠 Warning |
+| > 8 m    | 🟢 Safe    |
+
+---
+
+## 🗄 Supabase
+
+* Uses an anonymous key (safe for frontend usage)
+* Security enforced through Row Level Security (RLS)
+* Users can configure their own Supabase project if required
+
+---
+
+## 🛠 Troubleshooting
+
+### Video Stream Not Working
+
+* Verify DroidCam IP address
+* Ensure both devices are on the same Wi-Fi network
+
+### Backend Not Running
+
+* Activate the virtual environment
+* Verify YOLO model path configuration
+* Check dependency installation
+
+### API Connection Issues
+
+* Verify backend IP address in frontend configuration
+* Ensure backend server is running
+
+---
+
+## 🔮 Future Improvements
+
+* Advanced Driver Assistance System (ADAS)
+* Smart speed prediction
+* Cloud monitoring dashboard
+* Multi-camera support
+* Emergency alert and response system
+* Edge AI optimization
+
+---
+
+## 📜 License
+
+This project is intended for educational and research purposes only.
+
+---
+
+## 👨‍💻 Authors
+
+Built using Flutter, FastAPI, YOLOv8, OpenCV, GPS tracking, and real-time collision detection technologies.
