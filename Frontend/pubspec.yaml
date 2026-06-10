@@ -1,0 +1,43 @@
+name: accident_app
+description: Accident Prevention System Frontend
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.9.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # 🌐 HTTP
+  http: ^1.2.0
+
+  # 🖥️ WINDOWS WEBVIEW (MAP)
+  webview_windows: ^0.3.0
+
+  # 📍 GPS
+  geolocator: ^13.0.1
+
+  # 🎥 FAST MJPEG VIDEO STREAM
+  mjpeg_stream: ^0.0.1
+
+  # 🔐 SUPABASE
+  supabase_flutter: ^2.9.1
+
+  # 📅 DATE & TIME
+  intl: ^0.20.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/map.html
