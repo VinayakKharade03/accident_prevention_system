@@ -21,6 +21,29 @@ The system combines:
 The system detects vehicles, pedestrians, and animals, estimates their distance from the camera, classifies risk levels, and provides real-time alerts to users.
 
 ---
+## 📸 Screenshots
+
+### 🔐 Authentication
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/67611b08-fb50-4d8b-9605-3f6943241756" />
+
+
+###📊 Dashboard
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9d59c9dd-9a70-4dc2-8e17-618ea5e12e05" />
+
+
+### 🚗 Live Object Detection
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/af1a8d84-36b8-4924-89f5-098ec0ee677e" />
+
+
+### 🗺️ GPS Navigation & Tracking
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/371740ad-8a71-46b3-a166-110a74075e36" />
+
+
+
+### ⚠️ Risk Alerts & Logs
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b38f2a7b-c7c8-4108-ac22-eec70db1520b" />
+
+---
 
 ## ✨ Key Features
 
