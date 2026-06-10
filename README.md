@@ -8,16 +8,17 @@ An AI-powered road safety system that uses Computer Vision, GPS tracking, and re
 
 The Accident Detection System continuously monitors road environments using a mobile camera and AI-based object detection.
 
-### Technologies Used
+The system combines:
 
-* 📱 DroidCam for live video streaming from Android devices
+* 📱 DroidCam for live video streaming
 * 🤖 YOLOv8 for object detection
-* 🎥 OpenCV for image processing and object tracking
+* 🎥 OpenCV for image processing and tracking
 * ⚡ FastAPI for backend APIs
 * 📲 Flutter for the mobile application
 * 📍 GPS for real-time location tracking
+* 🔐 Supabase Authentication for secure login and logout
 
-The system detects vehicles, pedestrians, and animals, estimates distance, classifies risk levels, and provides real-time alerts.
+The system detects vehicles, pedestrians, and animals, estimates their distance from the camera, classifies risk levels, and provides real-time alerts to users.
 
 ---
 
@@ -27,13 +28,13 @@ The system detects vehicles, pedestrians, and animals, estimates distance, class
 
 * Detects vehicles, pedestrians, and animals
 * Processes live video streams
-* Uses YOLOv8 for high-speed detection
-* Tracks objects across frames
+* Uses YOLOv8 for high-speed object detection
+* Tracks objects across consecutive frames
 
 ### ⚠️ Collision Risk Assessment
 
 * Estimates object distance from the camera
-* Classifies risk levels:
+* Classifies collision risk levels:
 
   * Safe
   * Warning
@@ -41,22 +42,31 @@ The system detects vehicles, pedestrians, and animals, estimates distance, class
 
 ### 📍 GPS Tracking
 
-* Real-time location tracking
-* Sends coordinates to the backend
-* Supports location-aware monitoring
+* Real-time location monitoring
+* Sends GPS coordinates to backend services
+* Supports location-aware safety analysis
 
 ### 📊 Live Dashboard
 
 * Displays detected objects
-* Shows collision status
-* Displays GPS data
-* Real-time updates
+* Shows collision risk status
+* Displays GPS information
+* Provides real-time updates
 
-### 📱 Mobile App (Flutter)
+### 📱 Mobile Application
 
+* Built with Flutter
 * Live monitoring interface
-* Alerts and notifications
-* Simple and user-friendly UI
+* Alert notifications
+* User-friendly UI
+
+### 🔐 User Authentication
+
+* User Registration (Sign Up)
+* User Login
+* User Logout
+* Session Management
+* Secure authentication using Supabase Auth
 
 ---
 
@@ -77,6 +87,12 @@ The system detects vehicles, pedestrians, and animals, estimates distance, class
 * YOLOv8
 * OpenCV
 
+### Authentication & Database
+
+* Supabase
+* Supabase Authentication
+* PostgreSQL
+
 ### Communication
 
 * REST APIs
@@ -87,27 +103,31 @@ The system detects vehicles, pedestrians, and animals, estimates distance, class
 ## 🏗 System Architecture
 
 ```text
-Mobile Camera + GPS
-         │
-         ▼
-      DroidCam
-         │
-         ▼
-    Video Stream
-         │
-         ▼
-   FastAPI Backend
-         │
- ┌───────┼────────┐
- ▼       ▼        ▼
-YOLO  Distance   GPS
-Detect Analysis Tracking
-         │
-         ▼
-  Risk Assessment
-         │
-         ▼
-    Flutter App
+                    ┌─────────────────┐
+                    │   Flutter App   │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │ Supabase Auth   │
+                    │ Login / Logout  │
+                    └────────┬────────┘
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │ FastAPI Backend │
+                    └────────┬────────┘
+                             │
+          ┌──────────────────┼──────────────────┐
+          ▼                  ▼                  ▼
+    YOLO Detection     Distance Analysis    GPS Tracking
+          │                  │                  │
+          └──────────────┬───┴──────────────────┘
+                         ▼
+                  Risk Assessment
+                         │
+                         ▼
+                   Alert System
 ```
 
 ---
@@ -134,11 +154,21 @@ Accident_Prevention_System/
 
 ### Backend Setup
 
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd Accident_Prevention_System
+```
+
+Create a virtual environment:
+
 ```bash
 cd Backend
-
 python -m venv venv
 ```
+
+Activate the environment:
 
 #### Windows
 
@@ -152,19 +182,19 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-#### Install Dependencies
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-#### Start Server
+Run the FastAPI server:
 
 ```bash
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Backend runs at:
+Backend URL:
 
 ```text
 http://localhost:8000
@@ -184,6 +214,7 @@ http://localhost:8000/docs
 cd Frontend
 
 flutter pub get
+
 flutter run
 ```
 
@@ -191,11 +222,12 @@ flutter run
 
 ## 📹 DroidCam Setup
 
-1. Install DroidCam on both your phone and PC.
-2. Connect both devices to the same Wi-Fi network.
-3. Start the DroidCam server.
+1. Install DroidCam on your Android device.
+2. Install DroidCam Client on your PC.
+3. Connect both devices to the same Wi-Fi network.
+4. Start the DroidCam server.
 
-Video Stream URL:
+Example video stream URL:
 
 ```text
 http://YOUR_PHONE_IP:4747/video
@@ -203,9 +235,37 @@ http://YOUR_PHONE_IP:4747/video
 
 ---
 
+## 🔐 Supabase Configuration
+
+Create a Supabase project and enable Authentication.
+
+Add the following configuration to your Flutter application:
+
+```env
+SUPABASE_URL=YOUR_SUPABASE_URL
+SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+```
+
+### Authentication Features
+
+* Email & Password Sign Up
+* Email & Password Login
+* User Session Management
+* Secure Logout
+* JWT-Based Authentication
+
+### Security
+
+* Supabase Authentication handles user identity
+* Anonymous key is safe for frontend usage
+* Row Level Security (RLS) protects database records
+* Users can access only authorized data
+
+---
+
 ## ⚙️ Required Configuration
 
-### Backend URL (Frontend)
+### Backend URL
 
 ```text
 http://YOUR_SERVER_IP:8000
@@ -230,6 +290,7 @@ http://YOUR_SERVER_IP:5000/alert
 ```python
 FRAME_W = 640
 FRAME_H = 480
+
 CONFIDENCE = 0.25
 FOCAL_LENGTH = 700
 
@@ -252,11 +313,16 @@ MAX_LOST = 10
 
 ---
 
-## 🗄 Supabase
+## 📡 API Endpoints
 
-* Uses an anonymous key (safe for frontend usage)
-* Security enforced through Row Level Security (RLS)
-* Users can configure their own Supabase project if required
+| Method | Endpoint | Description      |
+| ------ | -------- | ---------------- |
+| GET    | /        | Health Check     |
+| POST   | /detect  | Object Detection |
+| GET    | /gps     | GPS Data         |
+| POST   | /alert   | Alert Generation |
+
+> Actual endpoints may vary based on implementation.
 
 ---
 
@@ -266,17 +332,25 @@ MAX_LOST = 10
 
 * Verify DroidCam IP address
 * Ensure both devices are on the same Wi-Fi network
+* Check camera permissions
 
 ### Backend Not Running
 
 * Activate the virtual environment
-* Verify YOLO model path configuration
+* Verify model file paths
 * Check dependency installation
+
+### Authentication Issues
+
+* Verify Supabase URL
+* Verify Supabase Anon Key
+* Ensure Authentication is enabled in Supabase
 
 ### API Connection Issues
 
-* Verify backend IP address in frontend configuration
+* Verify backend IP address
 * Ensure backend server is running
+* Check firewall/network settings
 
 ---
 
@@ -284,9 +358,10 @@ MAX_LOST = 10
 
 * Advanced Driver Assistance System (ADAS)
 * Smart speed prediction
-* Cloud monitoring dashboard
+* Cloud dashboard
 * Multi-camera support
-* Emergency alert and response system
+* Emergency response integration
+* Driver behavior analysis
 * Edge AI optimization
 
 ---
@@ -299,4 +374,4 @@ This project is intended for educational and research purposes only.
 
 ## 👨‍💻 Authors
 
-Built using Flutter, FastAPI, YOLOv8, OpenCV, GPS tracking, and real-time collision detection technologies.
+Developed using Flutter, FastAPI, YOLOv8, OpenCV, GPS tracking, Supabase Authentication, and real-time collision detection technologies.
