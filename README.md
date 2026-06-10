@@ -2,6 +2,12 @@
 
 An AI-powered road safety system that uses Computer Vision, GPS tracking, and real-time monitoring to detect road hazards, estimate collision risk, and provide live alerts.
 
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Computer%20Vision-red)
+![Supabase](https://img.shields.io/badge/Supabase-Authentication-brightgreen)
+![License](https://img.shields.io/badge/License-Educational-orange)
+
 ---
 
 ## 📖 Overview
@@ -21,13 +27,26 @@ The system combines:
 The system detects vehicles, pedestrians, and animals, estimates their distance from the camera, classifies risk levels, and provides real-time alerts to users.
 
 ---
+
+## 🎯 Project Highlights
+
+- Real-time object detection using YOLOv8
+- Distance estimation and collision risk assessment
+- GPS-based live location tracking and navigation
+- Real-time alert generation (Safe / Warning / Danger)
+- Secure user authentication with Supabase
+- Cross-platform Flutter application (Android & Desktop)
+- FastAPI-powered backend services
+
+  ---
+  
 ## 📸 Screenshots
 
 ### 🔐 Authentication
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/67611b08-fb50-4d8b-9605-3f6943241756" />
 
 
-###📊 Dashboard
+### 📊 Dashboard
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9d59c9dd-9a70-4dc2-8e17-618ea5e12e05" />
 
 
